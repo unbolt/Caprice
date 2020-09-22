@@ -12,5 +12,5 @@
 */
 
 $router->get('/', function () use ($router) {
-    return 'Caprice says Hi';
+    return 'Caprice says fuck you';
 });
