@@ -33,14 +33,17 @@ class DIController extends Controller
      */
     public function DIMessageReceived(DIUpdateRequest $request)
     {
-
         $message = $this->decodeMessage($request->input('message'));
 
-        Storage::disk('local')->put('di/location.txt', json_encode(['location' => $message, 'debug' => $request->input('message')]));
+        if($message) {
+            Storage::disk('local')->put('di/location.txt', json_encode(['location' => $message, 'debug' => $request->input('message')]));
 
-        event(new DIUpdatedEvent($message, $request->input('message')));
+            event(new DIUpdatedEvent($message, $request->input('message')));
 
-        return response()->json('Updated');
+            return response()->json('Updated');
+        } else {
+            return response()->json('No valid location');
+        }
     }
 
     private function decodeMessage($message)
