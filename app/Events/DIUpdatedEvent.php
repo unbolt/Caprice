@@ -13,10 +13,12 @@ class DIUpdatedEvent implements ShouldBroadcastNow
     use SerializesModels;
 
     public $location;
+    public $debug;
 
-    public function __construct(string $location)
+    public function __construct(string $location, string $debug)
     {
         $this->location = $location;
+        $this->debug = $debug;
     }
 
     public function broadcastOn()

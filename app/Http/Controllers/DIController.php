@@ -36,7 +36,7 @@ class DIController extends Controller
 
         $message = $this->decodeMessage($request->input('message'));
 
-        Storage::disk('local')->put('di/location.txt', json_encode(['location' => $message]));
+        Storage::disk('local')->put('di/location.txt', json_encode(['location' => $message, 'debug' => $request->input('message')]));
 
         event(new DIUpdatedEvent($message));
 
