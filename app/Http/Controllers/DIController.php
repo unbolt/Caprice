@@ -21,9 +21,30 @@ class DIController extends Controller
     public function DIMessageReceived(DIUpdateRequest $request)
     {
 
-        event(new DIUpdatedEvent($request->input('message')));
+        $message = $this->decodeMessage($request->input('message'));
+
+        Storage::disk('local')->put('di/location.txt', json_encode($message));
+
+        event(new DIUpdatedEvent($message));
 
         return response()->json('Updated');
+    }
+
+    private function decodeMessage($message)
+    {
+        $message = explode(",", $message);
+
+        if(!array_key_exists(4, $message)) {
+            return false;
+        }
+
+        if($message[4] == '00000120') {
+            return 'Escha Zi\'Tah';
+        } elseif($message[4] == '00000121') {
+            return 'Escha Ru\'Aun';
+        } elseif($message[4] == '00000123') {
+            return 'Reisenjima';
+        }
     }
 
 }
