@@ -1,9 +1,21 @@
 <template>
     <div>
-        {{ di.event }}
-        {{ di.zone }}
-        {{ di.killstreak }}
-        {{ di.total_kills }}
+        <strong>DOMAIN INVASION</strong>
+        <span v-if="di.event == 'soon'">
+            Starting soon &raquo;
+        </span>
+        <span v-if="di.event == 'very_soon'">
+            Scouting party:
+        </span>
+        <span v-if="di.event == 'boss'">
+            {Fighting right now!}
+        </span>
+        <span v-if="di.event == 'boss_dead'">
+            Just killed:
+        </span>
+        {{ di.zone }} &laquo;
+        Killstreak: {{ di.killstreak }} /
+        Total kills: {{ di.total_kills }}
     </div>
 </template>
 

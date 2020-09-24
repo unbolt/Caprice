@@ -97,8 +97,8 @@ class DIController extends Controller
             $decoded_message['event'] = 'boss_spawn';
         } elseif($message[3] == '0000002c') {
             $decoded_message['event'] = 'boss_dead';
-            $decoded_message['killstreak'] = hexdec($message[5]);
-            $decoded_message['total_kills'] = hexdec($message[6]);
+            $decoded_message['killstreak'] = number_format(hexdec($message[5]));
+            $decoded_message['total_kills'] = number_format(hexdec($message[6]));
         }
 
         if($message[4] == '00000120') {

@@ -7,6 +7,7 @@
         <title>DI Location</title>
 
         <script src="{{ mix('/js/app.js') }}" defer></script>
+        <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
 
     </head>
     <body>
