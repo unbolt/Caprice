@@ -46,7 +46,16 @@ class ItemController extends Controller
         $file_path = $this->pathFromItemName($request->input('item_name'));
         $file_name = $this->fileFromItemName($request->input('item_name'));
 
-        // Save or update the file
+        // Check if the quantity has changed and return a message if
+        // theres no update to be made
+        $existing_item = $this->returnItemData($file_path);
+        if($existing_item) {
+            if($existing_item->qty == $item['qty']) {
+                return response()->json('Nothing has changed');
+            }
+        }
+
+        // Save or update the item file
         $this->writeItemData($file_path, $item);
 
         event(new ItemUpdatedEvent($file_name, $item['name'], $item['qty']));
@@ -87,7 +96,12 @@ class ItemController extends Controller
 
     private function returnItemData($path)
     {
-        $item = Storage::disk('local')->get($path);
+        try {
+            $item = Storage::disk('local')->get($path);
+        } catch (Throwable $e) {
+            $item = null;
+        }
+
         return json_decode($item);
     }
 }
