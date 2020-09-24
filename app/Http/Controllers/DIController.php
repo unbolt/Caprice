@@ -12,6 +12,19 @@ use App\Events\DIUpdatedEvent;
 
 class DIController extends Controller
 {
+
+    public function show() {
+        return view('di_location');
+    }
+
+    public function DILocation()
+    {
+        $location = Storage::disk('local')->get('di/location.txt');
+        $location = json_decode($location);
+
+        return response()->json($location);
+    }
+
     /**
      * Save item data to the server
      *
@@ -23,7 +36,7 @@ class DIController extends Controller
 
         $message = $this->decodeMessage($request->input('message'));
 
-        Storage::disk('local')->put('di/location.txt', json_encode($message));
+        Storage::disk('local')->put('di/location.txt', json_encode(['location' => $message]));
 
         event(new DIUpdatedEvent($message));
 
