@@ -1,6 +1,9 @@
 <template>
     <div>
-        {{ di.location }}
+        {{ di.event }}
+        {{ di.zone }}
+        {{ di.killstreak }}
+        {{ di.total_kills }}
     </div>
 </template>
 
