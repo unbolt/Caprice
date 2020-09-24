@@ -21,8 +21,6 @@ class DIController extends Controller
     public function DIMessageReceived(DIUpdateRequest $request)
     {
 
-
-
         event(new DIUpdatedEvent($request->input('message')));
 
         return response()->json('Updated');
