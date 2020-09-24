@@ -25441,6 +25441,9 @@ var channel = window.Echo.channel('item-updated-channel');
 channel.listen('.item-updated', function (data) {
   console.log(JSON.stringify(data));
 });
+channel.listen('.di-updated', function (data) {
+  console.log(JSON.stringify(data));
+});
 
 /***/ }),
 

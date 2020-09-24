@@ -17,6 +17,7 @@ Route::post('items/update', 'ItemController@saveItemData')->name('items.save');
 Route::get('items/all', 'ItemController@listAllItems')->name('items.list');
 Route::get('items/{item}', 'ItemController@retrieveItemData')->name('items.info');
 
+Route::post('di/update', 'DIController@DIMessageReceived')->name('di.message');
 
 
 Route::get('itemtracker/{item}', 'ItemTrackerController@trackItem')->name('itemtracker.item');
