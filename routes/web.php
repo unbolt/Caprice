@@ -13,6 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('items/all', 'ItemController@listAllItems')->name('items.list');
+Route::get('items/{item}', 'ItemController@retrieveItemData')->name('items.info');
+Route::post('items/update', 'ItemController@saveItemData')->name('items.save');
+
+
+Route::get('itemtracker/{item}', 'ItemTrackerController@trackItem')->name('itemtracker.item');
+
