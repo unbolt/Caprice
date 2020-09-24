@@ -1,7 +1,7 @@
 <template>
     <div>
         {{ item_data.name }}
-        {{ item_data.qty }}
+        x{{ item_data.qty }}
     </div>
 </template>
 
@@ -13,10 +13,6 @@
         return {
             item_data: []
         }
-    },
-
-    mounted() {
-        // this.getItemData();
     },
 
     created() {
